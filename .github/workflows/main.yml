@@ -1,0 +1,21 @@
+#-----------------------
+# Deploy to AWS
+name: Deploy-TO-AWS
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  my_testing:
+    runs-on:
+      - ubuntu-22.04
+    steps:
+      - name: Print Hello Message
+        run: echo "Hello world staging"
+  my_deploy:
+    runs-on:
+      - ubuntu-22.04
+    steps:
+      - name: Print again
+        run: echo "Hello Deploy job"
