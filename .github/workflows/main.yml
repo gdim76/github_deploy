@@ -17,13 +17,18 @@ jobs:
     runs-on:
       - ubuntu-22.04
     steps:
+      - name: Git clone
+        uses: actions/checkout@v3
+
       - name: Print Hello Message
         run: echo "Hello world staging"
+
       - name: EXECUTE TESTS
         run: |
           echo "Executing Tests..."
           echo "Test env ${{ env.DeployEnv }} "
           echo "Test package ${{ env.Deploy_package }} "
+
 
   my_deploy:
     runs-on:
@@ -38,3 +43,8 @@ jobs:
           echo "Deploying to AWS..."
           echo "Deploy env ${{ env.DeployEnv }} "
           echo "Deploy package ${{ env.Deploy_package }} "
+
+      - name: AWS CLI Version
+        run: aws --version 
+      - name: Checking zip
+        run: zip --version
