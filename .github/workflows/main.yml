@@ -13,9 +13,12 @@ jobs:
     steps:
       - name: Print Hello Message
         run: echo "Hello world staging"
+
   my_deploy:
     runs-on:
       - ubuntu-22.04
+    needs:
+      - my_testing
     steps:
       - name: Print again
         run: echo "Hello Deploy job"
