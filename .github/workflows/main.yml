@@ -1,6 +1,12 @@
 #-----------------------
 # Deploy to AWS
+#-----------------------
 name: Deploy-TO-AWS
+env:
+  AppName: myapp
+  DeployEnv: staging
+  Deploy_package: "myapp-ver-${{ github.sha }}"
+
 on: 
   push:
     branches:
@@ -13,6 +19,11 @@ jobs:
     steps:
       - name: Print Hello Message
         run: echo "Hello world staging"
+      - name: EXECUTE TESTS
+        run: |
+          echo "Executing Tests..."
+          echo "Test env ${{ env.DeployEnv }} "
+          echo "Test package ${{ env.Deploy_package }} "
 
   my_deploy:
     runs-on:
@@ -22,3 +33,8 @@ jobs:
     steps:
       - name: Print again
         run: echo "Hello Deploy job"
+      - name: DEPLOY TO AWS
+        run: |
+          echo "Deploying to AWS..."
+          echo "Deploy env ${{ env.DeployEnv }} "
+          echo "Deploy package ${{ env.Deploy_package }} "
